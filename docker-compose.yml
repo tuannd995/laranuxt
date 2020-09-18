@@ -1,0 +1,81 @@
+version: '3.6'
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./docker/nginx
+    ports:
+      - ${NGINX_HOST_PORT}:80
+    volumes:
+      - ./api/.:/app
+      - ./docker/nginx/logs/.:/var/log/nginx
+    networks:
+      - app-network
+
+  api:
+    container_name: api
+    build:
+      context: ./docker/api
+      args:
+        DOCKER_UID: ${DOCKER_UID:-0}
+        DOCKER_GID: ${DOCKER_GID:-0}
+    tty: true
+    stdin_open: true
+    command: sh /docker-entrypoint.sh
+    volumes:
+      - ./api/.:/app
+    networks:
+      - app-network
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql-vol:/var/lib/mysql
+    ports:
+      - ${MYSQL_HOST_PORT}:${DB_PORT}
+    networks:
+      - app-network
+
+  redis:
+    container_name: redis
+    image: redis:6.0-rc2-alpine
+    restart: always
+    ports:
+      - ${REDIS_HOST_PORT}:${REDIS_PORT}
+    networks:
+      - app-network
+
+  client:
+    container_name: client
+    build:
+      context: ./docker/client
+    tty: true
+    stdin_open: true
+    restart: always
+    command: sh /docker-entrypoint.sh
+    ports:
+      - ${CLIENT_HOST_PORT}:3000
+    environment:
+      HOST: 0.0.0.0
+      ENVIROMENT: ${ENVIROMENT:-DEV}
+    volumes:
+      - ./client/.:/app
+    networks:
+      - app-network
+
+volumes:
+  mysql-vol:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
+
