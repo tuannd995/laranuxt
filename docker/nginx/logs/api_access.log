@@ -1,0 +1,5 @@
+172.19.0.1 - - [01/Dec/2020:02:34:17 +0000] "GET / HTTP/1.1" 500 594186 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+172.19.0.1 - - [01/Dec/2020:02:34:18 +0000] "GET /_ignition/health-check HTTP/1.1" 200 40 "http://localhost:1080/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+172.19.0.1 - - [01/Dec/2020:02:34:18 +0000] "GET /favicon.ico HTTP/1.1" 200 0 "http://localhost:1080/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+172.19.0.1 - - [01/Dec/2020:02:34:33 +0000] "GET / HTTP/1.1" 200 17501 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+172.19.0.1 - - [01/Dec/2020:02:34:33 +0000] "GET /favicon.ico HTTP/1.1" 200 0 "http://localhost:1080/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"

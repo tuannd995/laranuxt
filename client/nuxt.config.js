@@ -1,47 +1,79 @@
-export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
+require('dotenv').config()
+
+module.exports = {
+  mode: 'universal',
+  env: {
+    ROOT_URL: process.env.ROOT_URL,
+    BASE_API_URL: process.env.BASE_API_URL,
+    BASE_SSR_API_URL: process.env.BASE_SSR_API_URL,
+  },
+  /*
+   ** Headers of the page
+   */
   head: {
-    title: 'laranuxt',
+    title: process.env.APP_NAME || 'LARANUXT',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
-
-  // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-    'element-ui/lib/theme-chalk/index.css'
-  ],
-
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-    '@/plugins/element-ui'
-  ],
-
-  // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
-
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
+  /*
+   ** Customize the progress-bar color
+   */
+  loading: { color: '#fff' },
+  /*
+   ** Global CSS
+   */
+  css: ['element-ui/lib/theme-chalk/index.css', '@/assets/styles/admin/index.scss'],
+  /*
+   ** Plugins to load before mounting the App
+   */
+  plugins: ['@/plugins/element-ui', '@/plugins/components'],
+  /*
+   ** Nuxt.js dev-modules
+   */
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
+    // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/router'
   ],
-
-  // Modules (https://go.nuxtjs.dev/config-modules)
+  /*
+   ** Nuxt.js modules
+   */
   modules: [
-    // https://go.nuxtjs.dev/axios
+    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv'
   ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
-
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
+  router: {
+    middleware: ['admin/auth']
+  },
+  /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {
+    debug: process.env.NODE_ENV !== 'production',
+    baseURL: process.env.BASE_SSR_API_URL,
+    browserBaseURL: process.env.BASE_API_URL,
+    credentials: false,
+  },
+  /*
+   ** Build configuration
+   */
   build: {
     transpile: [/^element-ui/],
+    /*
+     ** You can extend webpack config here
+     */
+    extractCSS: true,
+    extend(config, ctx) {}
   }
 }
