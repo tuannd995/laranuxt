@@ -4,11 +4,11 @@ export default ({ store, redirect, route }) => {
   const user = store.getters['admin/auth']
   const login = '/admin/login'
   // If the user is not authenticated
-  // if (!user && route.path.match(blockRoute)) {
-  //   return redirect(login)
-  // }
+  if (!user && route.path.match(blockRoute)) {
+    return redirect(login)
+  }
 
-  // if (user && route.path === login) {
-  //   redirect('/admin')
-  // }
+  if (user && route.path === login) {
+    redirect('/admin')
+  }
 }
