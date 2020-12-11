@@ -6,6 +6,12 @@ export default [
     icon: "menu"
   },
   {
+    path: "/admin/users",
+    name: "admin-users",
+    title: "Users",
+    icon: "user"
+  },
+  {
     path: "/admin/settings",
     name: "admin-settings",
     title: "Settings",
