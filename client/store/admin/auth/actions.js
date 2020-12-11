@@ -1,21 +1,17 @@
-import Cookie from 'js-cookie'
 export default {
   async login({ commit }, data) {
     try {
-      const response = await this.$api.auth.login(data)
-      const token = response.token
-      const { user } = await this.$api.auth.getCurrentUser()
-      Cookie.set('access_token', token)
-      commit('SUCCESS_AUTH', user)
+      const token = await this.$api.admin.auth.login(data)
+      commit('SET_TOKEN', token)
       this.$router.push('/admin')
     } catch (err) {
       throw err
     }
   },
   async logout({ commit }) {
-    await this.$api.auth.logout()
-    await Cookie.remove('access_token')
-    location.href = '/'
+    await this.$api.admin.auth.logout()
+    await this.$cookies.remove('admin_token')
     commit('LOG_OUT')
+    location.href = '/admin/login'
   }
 }

@@ -1,7 +1,9 @@
 import auth from "~/middleware/admin/auth";
 
-import authRepository from "./auth";
+import authRepository from "./admin/auth";
 
 export default axios => ({
-  auth: authRepository(axios)
+  admin: {
+    auth: authRepository(axios)
+  }
 })

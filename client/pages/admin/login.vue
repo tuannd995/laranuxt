@@ -70,8 +70,8 @@ export default {
   data() {
     return {
       loginForm: {
-        email: "admin@a.com",
-        password: "11111111"
+        email: "",
+        password: ""
       },
       hasErr: false,
       errMsg: "",
@@ -79,11 +79,10 @@ export default {
         email: [
           {
             type: "email",
-            min: 6,
             trigger: ["blur", "change"]
           }
         ],
-        password: [{ required: true, min: 8, trigger: "blur" }]
+        password: [{ required: true, trigger: "blur" }]
       },
       loading: false,
       passwordType: "password"

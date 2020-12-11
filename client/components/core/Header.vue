@@ -59,7 +59,6 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('admin/auth/logout')
-      this.$router.push({name: 'admin-login'})
     }
   }
 }
