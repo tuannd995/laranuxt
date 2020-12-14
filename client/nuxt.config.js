@@ -21,7 +21,8 @@ module.exports = {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [{ rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Quicksand&display=swap;subset=vietnamese" }]
   },
   /*
    ** Customize the progress-bar color
@@ -32,7 +33,7 @@ module.exports = {
    */
   css: [
     "element-ui/lib/theme-chalk/index.css",
-    "@/assets/styles/admin/index.scss"
+    "@/assets/styles/index.scss"
   ],
   /*
    ** Plugins to load before mounting the App

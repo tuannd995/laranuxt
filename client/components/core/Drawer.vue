@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import variables from '@/assets/styles/admin/variables.scss'
+import variables from '@/assets/styles/variables.scss'
 import routes from '@/config/routes'
 export default {
   computed: {

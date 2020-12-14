@@ -19,7 +19,6 @@
 <script>
 import ResizeHandler from '@/utils/mixins/ResizeHandler'
 export default {
-  name: 'Default',
   mixins: [ResizeHandler],
   computed: {
     sidebar() {
@@ -49,8 +48,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/styles/admin/mixin.scss';
-@import '~@/assets/styles/admin/variables.scss';
+@import '~@/assets/styles/mixin.scss';
+@import '~@/assets/styles/variables.scss';
 .app-wrapper {
   @include clearfix;
   position: relative;
